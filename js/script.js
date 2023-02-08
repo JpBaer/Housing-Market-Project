@@ -12,6 +12,26 @@
         // link: click here for street view
         // retrieve address and zestimate from the Zestimate API
 
+//Example code for calling a fetch from realty-in-us
+var searchButton = document.getElementById('searchButton');
+function fetchRealty(){
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': "eba8306e12msh1c414b154242eb7p11f720jsnd5aaf05cb4b3",
+                "X-RapidAPI-Host": "realty-in-us.p.rapidapi.com"
+            }
+        };
+        //var stateCode: 
+        //var cityName:
+        //spaces in city name need to be replaced with %20
+        fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=" + stateCode + "&city=" + cityName + "&offset=0&limit=200&sort=relevance", options)
+            .then(response => response.json())
+            .then(response => console.log(response))
+            .catch(err => console.error(err));
+    }
+
+searchButton.addEventListener('click',function(){fetchRealty()});
 
 
         
@@ -25,17 +45,30 @@
     //Bonus points if you can display icons for each house
 // #3 On Single House page show location of selected house and street view if applicable
 
+//Create a function for when a house is clicked that pulls lat and lon from zillow and displays map
+
 var GoogleAPIKey = "AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U"
 
+
+//
 function initMap(){
     //var latlon = 
+    var lat = 47.6062
+    var lng = -122.3321
+    var coords = {lat:lat,lng:lng}
     var options = {
         zoom: 10,
-        center: {lat:47.6062,lng:-122.3321}
+        center: coords
     }
 
     var map = new google.maps.Map(document.getElementById('map'),options);
+
+    var marker = new google.maps.Marker({
+        position: coords,
+        map: map,
+      });
 }
+
 
 
 
