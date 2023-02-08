@@ -1,3 +1,20 @@
+// ------------------------------------------------------------------------------- //
+
+// Zillow: stuff needed
+
+    // Zillow Docs: https://bridgedataoutput.com/docs/explorer/zestimates#listZestimates
+    // Zillow URL: https://api.bridgedataoutput.com/api/v2/zestimates_v2/zestimates?access_token=SERVER_TOKEN
+
+    // Request: near, fields, limit, radius
+        // get city info from search bar, store in near
+
+    // Responses needed: address, zestimate, city, A timestamp representing when last this record was modified
+        // link: click here for street view
+        // retrieve address and zestimate from the Zestimate API
+
+
+
+        
 // ----------------Beginning of Google Maps Section--------------- //
 
 
@@ -9,6 +26,19 @@
 // #3 On Single House page show location of selected house and street view if applicable
 
 var GoogleAPIKey = "AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U"
+
+function initMap(){
+    //var latlon = 
+    var options = {
+        zoom: 10,
+        center: {lat:47.6062,lng:-122.3321}
+    }
+
+    var map = new google.maps.Map(document.getElementById('map'),options);
+}
+
+
+
 // Example HTTPS Call https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_Key
 // JSON signifies to return response in JSON
 // Address components seperated by +
@@ -21,5 +51,3 @@ var GoogleAPIKey = "AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U"
 
 
 
-
-// ----------------- End of Google Maps Section ---------------- //
