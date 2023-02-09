@@ -27,6 +27,7 @@ function fetchRealty(){
         };
 
         //Grabs value from state code dropdown
+        //Need to add a modal for errors if stateCode of cityName doesnt exist
         var stateCode = stateInput.value; 
         console.log(stateCode)
         //Replaces spaces with %20 for fetch url
@@ -50,6 +51,7 @@ function fetchRealty(){
 
                 }
             })
+            
             .catch(err => console.error(err));
     }
 
