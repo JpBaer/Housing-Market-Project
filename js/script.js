@@ -25,9 +25,22 @@ function fetchRealty(){
         //var stateCode: 
         //var cityName:
         //spaces in city name need to be replaced with %20
-        fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=" + stateCode + "&city=" + cityName + "&offset=0&limit=200&sort=relevance", options)
-            .then(response => response.json())
-            .then(response => console.log(response))
+       // fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=" + stateCode + "&city=" + cityName + "&offset=0&limit=200&sort=relevance", options)
+       fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=NY&city=New%20York%20City&offset=0&limit=200&sort=relevance", options)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data)
+                for( var i = 0; i < 5; i++){
+                console.log(data.listings[i])
+                console.log(data.listings[i].address)
+                console.log(data.listings[i].lat)
+                console.log(data.listings[i].lon)
+                console.log(data.listings[i].photo)
+                console.log(data.listings[i].price)
+                }
+            })
             .catch(err => console.error(err));
     }
 
@@ -49,9 +62,31 @@ searchButton.addEventListener('click',function(){fetchRealty()});
 
 var GoogleAPIKey = "AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U"
 
+//Grabs users location
+var userPosition = navigator.geolocation;
 
-//
-function initMap(){
+//determines users location
+userPosition.getCurrentPosition(success,failure);
+//If successful runs success function to show a map with current location
+function success(position){0
+
+    var userLat = position.coords.latitude;
+    var userLng = position.coords.longitude;
+    var coords = new google.maps.LatLng(userLat,userLng);
+    var options = {
+        zoom: 10,
+        center: coords
+    }
+
+    var map = new google.maps.Map(document.getElementById('map'),options);
+
+    var marker = new google.maps.Marker({
+        position: coords,
+        map: map,
+      });
+}
+//If failed to get current location runs following function to show default map of seattle
+function failure(){
     //var latlon = 
     var lat = 47.6062
     var lng = -122.3321
