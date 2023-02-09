@@ -12,6 +12,39 @@
         // link: click here for street view
         // retrieve address and zestimate from the Zestimate API
 
+//Example code for calling a fetch from realty-in-us
+var searchButton = document.getElementById('searchButton');
+function fetchRealty(){
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': "eba8306e12msh1c414b154242eb7p11f720jsnd5aaf05cb4b3",
+                "X-RapidAPI-Host": "realty-in-us.p.rapidapi.com"
+            }
+        };
+        //var stateCode: 
+        //var cityName:
+        //spaces in city name need to be replaced with %20
+       // fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=" + stateCode + "&city=" + cityName + "&offset=0&limit=200&sort=relevance", options)
+       fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=NY&city=New%20York%20City&offset=0&limit=200&sort=relevance", options)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data)
+                for( var i = 0; i < 5; i++){
+                console.log(data.listings[i])
+                console.log(data.listings[i].address)
+                console.log(data.listings[i].lat)
+                console.log(data.listings[i].lon)
+                console.log(data.listings[i].photo)
+                console.log(data.listings[i].price)
+                }
+            })
+            .catch(err => console.error(err));
+    }
+
+searchButton.addEventListener('click',function(){fetchRealty()});
 
 
         
@@ -25,17 +58,52 @@
     //Bonus points if you can display icons for each house
 // #3 On Single House page show location of selected house and street view if applicable
 
+//Create a function for when a house is clicked that pulls lat and lon from zillow and displays map
+
 var GoogleAPIKey = "AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U"
 
-function initMap(){
-    //var latlon = 
+//Grabs users location
+var userPosition = navigator.geolocation;
+
+//determines users location
+userPosition.getCurrentPosition(success,failure);
+//If successful runs success function to show a map with current location
+function success(position){0
+
+    var userLat = position.coords.latitude;
+    var userLng = position.coords.longitude;
+    var coords = new google.maps.LatLng(userLat,userLng);
     var options = {
         zoom: 10,
-        center: {lat:47.6062,lng:-122.3321}
+        center: coords
     }
 
     var map = new google.maps.Map(document.getElementById('map'),options);
+
+    var marker = new google.maps.Marker({
+        position: coords,
+        map: map,
+      });
 }
+//If failed to get current location runs following function to show default map of seattle
+function failure(){
+    //var latlon = 
+    var lat = 47.6062
+    var lng = -122.3321
+    var coords = {lat:lat,lng:lng}
+    var options = {
+        zoom: 10,
+        center: coords
+    }
+
+    var map = new google.maps.Map(document.getElementById('map'),options);
+
+    var marker = new google.maps.Marker({
+        position: coords,
+        map: map,
+      });
+}
+
 
 
 
