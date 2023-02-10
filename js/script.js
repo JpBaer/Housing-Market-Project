@@ -14,6 +14,9 @@
 
 //Example code for calling a fetch from realty-in-us
 var searchButton = document.getElementById('searchButton');
+var cityInput = document.getElementById('city-input');
+var stateInput = document.getElementById('state-select')
+
 function fetchRealty(){
         const options = {
             method: 'GET',
@@ -22,11 +25,17 @@ function fetchRealty(){
                 "X-RapidAPI-Host": "realty-in-us.p.rapidapi.com"
             }
         };
-        //var stateCode: 
-        //var cityName:
-        //spaces in city name need to be replaced with %20
-       // fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=" + stateCode + "&city=" + cityName + "&offset=0&limit=200&sort=relevance", options)
-       fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=NY&city=New%20York%20City&offset=0&limit=200&sort=relevance", options)
+
+        //Grabs value from state code dropdown
+        //Need to add a modal for errors if stateCode of cityName doesnt exist
+        var stateCode = stateInput.value; 
+        console.log(stateCode)
+        //Replaces spaces with %20 for fetch url
+        var cityName = cityInput.value.split(' ').join('%20');
+        console.log(cityName);
+        
+        fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=" + stateCode + "&city=" + cityName + "&offset=0&limit=200&sort=relevance", options)
+       //fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=NY&city=New%20York%20City&offset=0&limit=200&sort=relevance", options)
             .then(function (response) {
                 return response.json();
             })
@@ -39,8 +48,10 @@ function fetchRealty(){
                 console.log(data.listings[i].lon)
                 console.log(data.listings[i].photo)
                 console.log(data.listings[i].price)
+
                 }
             })
+            
             .catch(err => console.error(err));
     }
 
