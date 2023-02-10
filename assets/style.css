@@ -1,3 +1,11 @@
 #map{
     height: 400px;
-    width:50%}
+    width:50%
+}
+
+.cover-image {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
