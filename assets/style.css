@@ -3,8 +3,23 @@
     width:50%
 }
 
+
 .cover-image {
-    max-height: 330px;
+    max-height: 300px;
+    max-width: 300px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
+
+body {
+    display: flex;
+}
+
+#search-section {
+    width: 50%;
+}
+
+#house-listings-section {
+    width: 50%;
+}
+
