@@ -15,7 +15,9 @@
 //Example code for calling a fetch from realty-in-us
 var searchButton = document.getElementById('searchButton');
 var cityInput = document.getElementById('city-input');
-var stateInput = document.getElementById('state-select')
+var stateInput = document.getElementById('state-select');
+
+fetchRealty();
 
 function fetchRealty(){
         const options = {
@@ -41,16 +43,16 @@ function fetchRealty(){
             })
             .then(function (data) {
                 console.log(data)
-                for( var i = 0; i < 5; i++){
+                for (var i = 0; i < 6; i++){
                     console.log(data.listings[i])
                     // console.log(data.listings[i].address)
                     // console.log(data.listings[i].lat)
                     // console.log(data.listings[i].lon)
                     // console.log(data.listings[i].photo)
                     // console.log(data.listings[i].price)
-                    document.getElementById("cardImage").setAttribute("src", data.listings[i].photo);
-                    document.getElementById("cardAddress").innerHTML = data.listings[i].address;
-                    document.getElementById("cardPrice").innerHTML = data.listings[i].price;
+                    document.getElementsByClassName("cardImage")[i].setAttribute("src", data.listings[i].photo);
+                    document.getElementsByClassName("cardAddress")[i].innerHTML = data.listings[i].address;
+                    document.getElementsByClassName("cardPrice")[i].innerHTML = data.listings[i].price;
                 }
 
                 // calculates the mean price for houses in the area
