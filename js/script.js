@@ -41,7 +41,9 @@ function fetchRealty(){
             })
             .then(function (data) {
                 console.log(data)
+                var houseCoords = [];
                 for( var i = 0; i < 5; i++){
+
                 console.log(data.listings[i])
                 console.log(data.listings[i].address)
                 console.log(data.listings[i].lat)
@@ -49,7 +51,16 @@ function fetchRealty(){
                 console.log(data.listings[i].photo)
                 console.log(data.listings[i].price)
 
+                //Add house coordinates to array for setting markers
+                houseCoords.push([data.listings[i].lat, data.listings[i].lon])
+
+
+                //Create function to take lat lon and place marker on map
+
                 }
+
+                // Call function to put markers on map, housecoords is an array containing coordinates from each house
+                setMarkers(housecoords)
             })
             
             .catch(err => console.error(err));
@@ -79,7 +90,7 @@ var userPosition = navigator.geolocation;
 //determines users location
 userPosition.getCurrentPosition(success,failure);
 //If successful runs success function to show a map with current location
-function success(position){0
+function success(position){
 
     var userLat = position.coords.latitude;
     var userLng = position.coords.longitude;
@@ -116,7 +127,7 @@ function failure(){
 }
 
 
-
+function setMarkers(map, houseCoords)
 
 // Example HTTPS Call https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_Key
 // JSON signifies to return response in JSON
