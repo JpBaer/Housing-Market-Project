@@ -42,14 +42,27 @@ function fetchRealty(){
             .then(function (data) {
                 console.log(data)
                 for( var i = 0; i < 5; i++){
-                console.log(data.listings[i])
-                console.log(data.listings[i].address)
-                console.log(data.listings[i].lat)
-                console.log(data.listings[i].lon)
-                console.log(data.listings[i].photo)
-                console.log(data.listings[i].price)
-
+                    console.log(data.listings[i])
+                    // console.log(data.listings[i].address)
+                    // console.log(data.listings[i].lat)
+                    // console.log(data.listings[i].lon)
+                    // console.log(data.listings[i].photo)
+                    // console.log(data.listings[i].price)
+                    document.getElementById("cardImage").setAttribute("src", data.listings[i].photo);
+                    document.getElementById("cardAddress").innerHTML = data.listings[i].address;
+                    document.getElementById("cardPrice").innerHTML = data.listings[i].price;
                 }
+
+                // calculates the mean price for houses in the area
+                var averagePrice = 0;
+                for (var n = 0; n < data.listings.length; n++) {
+                    console.log(data.listings[n].price_raw);
+                    averagePrice += data.listings[n].price_raw;
+                }
+                averagePrice = averagePrice / data.listings.length;
+                console.log(averagePrice);
+
+                // add click event to take user to single house page
             })
             
             .catch(err => console.error(err));
