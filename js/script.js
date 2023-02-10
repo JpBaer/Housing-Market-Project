@@ -33,7 +33,20 @@ function fetchRealty(stateCode, cityName){
             })
             .then(function (data) {
                 console.log(data)
-                for (var i = 0; i < 6; i++){
+
+                var houseCoords = [];
+                var housePrices = [];
+                for( var i = 0; i < 6; i++){
+
+             
+
+                //Add house coordinates to array for setting markers
+                houseCoords.push([data.listings[i].lat, data.listings[i].lon]);
+                housePrices.push(data.listings[i].price);
+
+
+                //Create function to take lat lon and place marker on map
+
                     console.log(data.listings[i])
                     // console.log(data.listings[i].address)
                     // console.log(data.listings[i].lat)
@@ -45,15 +58,19 @@ function fetchRealty(stateCode, cityName){
                     document.getElementsByClassName("cardPrice")[i].innerHTML = data.listings[i].price;
                 }
 
+                    setMarkers(houseCoords, housePrices);
+
                 // calculates the mean price for houses in the area
                 var averagePrice = 0;
                 for (var n = 0; n < data.listings.length; n++) {
                     averagePrice += data.listings[n].price_raw;
-                }
+                }  
+
                 averagePrice = averagePrice / data.listings.length;
                 console.log(averagePrice);
 
                 // add click event to take user to single house page
+
             })
             
             .catch(err => console.error(err));
@@ -93,7 +110,7 @@ var userPosition = navigator.geolocation;
 //determines users location
 userPosition.getCurrentPosition(success,failure);
 //If successful runs success function to show a map with current location
-function success(position){0
+function success(position){
 
     var userLat = position.coords.latitude;
     var userLng = position.coords.longitude;
@@ -125,11 +142,42 @@ function failure(){
 
     var marker = new google.maps.Marker({
         position: coords,
-        map: map,
-      });
+        map: map
+      })
 }
 
 
+function setMarkers(houseCoords, housePrices){
+    console.log(houseCoords)
+    map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 10,
+    center: {lat: houseCoords[0][0], lng: houseCoords[0][1]}
+  });
+
+    for(let i = 0; i < houseCoords.length; i++){
+        var markerCoords = houseCoords[i];
+        var housePrice = housePrices[i];
+        var infowindow = new google.maps.InfoWindow({
+            map:map
+        });
+
+        var marker =  new google.maps.Marker({
+        position: { lat: markerCoords[0], lng: markerCoords[1] },
+        map: map
+        });
+       
+        marker.addListener("mouseover", function(){
+            infowindow.setContent(housePrice);
+            infowindow.open({
+                anchor:marker,
+                map,
+            })
+        })
+       
+        }
+        
+    }
+;
 
 
 // Example HTTPS Call https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_Key
