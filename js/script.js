@@ -14,6 +14,9 @@
 
 //Example code for calling a fetch from realty-in-us
 var searchButton = document.getElementById('searchButton');
+var cityInput = document.getElementById('city-input');
+var stateInput = document.getElementById('state-select')
+
 function fetchRealty(){
         const options = {
             method: 'GET',
@@ -22,25 +25,46 @@ function fetchRealty(){
                 "X-RapidAPI-Host": "realty-in-us.p.rapidapi.com"
             }
         };
-        //var stateCode: 
-        //var cityName:
-        //spaces in city name need to be replaced with %20
-       // fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=" + stateCode + "&city=" + cityName + "&offset=0&limit=200&sort=relevance", options)
-       fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=NY&city=New%20York%20City&offset=0&limit=200&sort=relevance", options)
+
+        //Grabs value from state code dropdown
+        //Need to add a modal for errors if stateCode of cityName doesnt exist
+        var stateCode = stateInput.value; 
+        console.log(stateCode)
+        //Replaces spaces with %20 for fetch url
+        var cityName = cityInput.value.split(' ').join('%20');
+        console.log(cityName);
+        
+        fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=" + stateCode + "&city=" + cityName + "&offset=0&limit=200&sort=relevance", options)
+       //fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=NY&city=New%20York%20City&offset=0&limit=200&sort=relevance", options)
             .then(function (response) {
                 return response.json();
             })
             .then(function (data) {
                 console.log(data)
                 for( var i = 0; i < 5; i++){
-                console.log(data.listings[i])
-                console.log(data.listings[i].address)
-                console.log(data.listings[i].lat)
-                console.log(data.listings[i].lon)
-                console.log(data.listings[i].photo)
-                console.log(data.listings[i].price)
+                    console.log(data.listings[i])
+                    // console.log(data.listings[i].address)
+                    // console.log(data.listings[i].lat)
+                    // console.log(data.listings[i].lon)
+                    // console.log(data.listings[i].photo)
+                    // console.log(data.listings[i].price)
+                    document.getElementById("cardImage").setAttribute("src", data.listings[i].photo);
+                    document.getElementById("cardAddress").innerHTML = data.listings[i].address;
+                    document.getElementById("cardPrice").innerHTML = data.listings[i].price;
                 }
+
+                // calculates the mean price for houses in the area
+                var averagePrice = 0;
+                for (var n = 0; n < data.listings.length; n++) {
+                    console.log(data.listings[n].price_raw);
+                    averagePrice += data.listings[n].price_raw;
+                }
+                averagePrice = averagePrice / data.listings.length;
+                console.log(averagePrice);
+
+                // add click event to take user to single house page
             })
+            
             .catch(err => console.error(err));
     }
 
