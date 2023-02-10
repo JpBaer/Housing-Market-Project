@@ -17,9 +17,7 @@ var searchButton = document.getElementById('searchButton');
 var cityInput = document.getElementById('city-input');
 var stateInput = document.getElementById('state-select');
 
-fetchRealty();
-
-function fetchRealty(){
+function fetchRealty(stateCode, cityName){
         const options = {
             method: 'GET',
             headers: {
@@ -27,14 +25,6 @@ function fetchRealty(){
                 "X-RapidAPI-Host": "realty-in-us.p.rapidapi.com"
             }
         };
-
-        //Grabs value from state code dropdown
-        //Need to add a modal for errors if stateCode of cityName doesnt exist
-        var stateCode = stateInput.value; 
-        console.log(stateCode)
-        //Replaces spaces with %20 for fetch url
-        var cityName = cityInput.value.split(' ').join('%20');
-        console.log(cityName);
         
         fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=" + stateCode + "&city=" + cityName + "&offset=0&limit=200&sort=relevance", options)
        //fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=NY&city=New%20York%20City&offset=0&limit=200&sort=relevance", options)
@@ -58,7 +48,6 @@ function fetchRealty(){
                 // calculates the mean price for houses in the area
                 var averagePrice = 0;
                 for (var n = 0; n < data.listings.length; n++) {
-                    console.log(data.listings[n].price_raw);
                     averagePrice += data.listings[n].price_raw;
                 }
                 averagePrice = averagePrice / data.listings.length;
@@ -70,7 +59,17 @@ function fetchRealty(){
             .catch(err => console.error(err));
     }
 
-searchButton.addEventListener('click',function(){fetchRealty()});
+searchButton.addEventListener('click',function(){
+    //Grabs value from state code dropdown
+    //Need to add a modal for errors if stateCode of cityName doesnt exist
+    var stateCode = stateInput.value; 
+    console.log(stateCode)
+    //Replaces spaces with %20 for fetch url
+    var cityName = cityInput.value.split(' ').join('%20');
+    console.log(cityName);
+
+    fetchRealty(stateCode, cityName)
+});
 
 
         
