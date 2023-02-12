@@ -33,25 +33,20 @@ function fetchRealty(stateCode, cityName){
             })
             .then(function (data) {
                 console.log(data)
+
                 var houseCoords = [];
                 var housePrices = [];
+                for( var i = 0; i < 6; i++){
+
+             
 
                 //Add house coordinates to array for setting markers
-              
+                houseCoords.push([data.listings[i].lat, data.listings[i].lon]);
+                housePrices.push(data.listings[i].price);
 
 
                 //Create function to take lat lon and place marker on map
 
-            
-                //console.log(houseCoords[0][0])
-                // Call function to put markers on map, housecoords is an array containing coordinates from each house
-            
-                //Determine average house price in your area
-                
-                for (var i = 0; i < 6; i++){
-
-                    houseCoords.push([data.listings[i].lat, data.listings[i].lon]);
-                    housePrices.push(data.listings[i].price);
                     console.log(data.listings[i])
 
                     // console.log(data.listings[i].address)
@@ -63,12 +58,15 @@ function fetchRealty(stateCode, cityName){
                     document.getElementsByClassName("cardAddress")[i].innerHTML = data.listings[i].address;
                     document.getElementsByClassName("cardPrice")[i].innerHTML = data.listings[i].price;
                 }
-                setMarkers(houseCoords, housePrices);
+
+                    setMarkers(houseCoords, housePrices);
+
                 // calculates the mean price for houses in the area
                 var averagePrice = 0;
                 for (var n = 0; n < data.listings.length; n++) {
                     averagePrice += data.listings[n].price_raw;
-                }
+                }  
+
                 averagePrice = averagePrice / data.listings.length;
                 console.log(averagePrice);
 
@@ -108,12 +106,14 @@ var GoogleAPIKey = "AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U"
 
 //Grabs users location
 var userPosition = navigator.geolocation;
+console.log('--------Geolocation---------');
+
 
 //determines users location
 userPosition.getCurrentPosition(success,failure);
 //If successful runs success function to show a map with current location
 function success(position){
-
+    console.log(position)
     var userLat = position.coords.latitude;
     var userLng = position.coords.longitude;
     var coords = new google.maps.LatLng(userLat,userLng);
@@ -128,6 +128,20 @@ function success(position){
         position: coords,
         map: map,
       });
+
+    // Reverse Geolocate (convert lat and lng into readable address)
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({location: {lat: userLat, lng: userLng}})
+      .then(function(response){
+        return response;
+      })
+      .then(function(data){
+        console.log(data);
+        var userState = data.results[8].address_components[2].short_name;
+        var userCity = data.results[8].address_components[0].long_name;
+    //Populate with houses in users location upon page load
+        fetchRealty(userState, userCity);
+      })
 }
 //If failed to get current location runs following function to show default map of seattle
 function failure(){
@@ -146,6 +160,9 @@ function failure(){
         position: coords,
         map: map
       })
+    var defaultState = 'WA';
+    var defaultCity = 'Seattle';
+    fetchRealty(defaultState, defaultCity);
 }
 
 
@@ -159,24 +176,40 @@ function setMarkers(houseCoords, housePrices){
     for(let i = 0; i < houseCoords.length; i++){
         var markerCoords = houseCoords[i];
         var housePrice = housePrices[i];
-        var infowindow = new google.maps.InfoWindow({
-            map:map
-        });
+        //console.log("House Price:" + housePrice);
+      
 
         var marker =  new google.maps.Marker({
         position: { lat: markerCoords[0], lng: markerCoords[1] },
         map: map
         });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: housePrice,
+    
+        });
+
+        marker.infowindow = infowindow;
        
         marker.addListener("mouseover", function(){
-            infowindow.setContent(housePrice);
-            infowindow.open({
-                anchor:marker,
-                map,
-            })
+            //infowindow.setContent(housePrice);
+            // infowindow.open({
+            //     anchor:marker,
+            //     map,
+            // })
+            
+            return this.infowindow.open(map, this);
+
+        })
+
+        marker.addListener("mouseout", function(){
+            return this.infowindow.close(map, this);
         })
        
         }
+        
+
+        
         
     }
 ;
