@@ -70,7 +70,7 @@ function fetchRealty(stateCode, cityName){
                 averagePrice = averagePrice / data.listings.length;
                 console.log(averagePrice);
 
-                // add click event to take user to single house page
+                
             })
             
             .catch(err => console.error(err));
@@ -88,13 +88,12 @@ searchButton.addEventListener('click',function(){
     fetchRealty(stateCode, cityName)
 });
 
-// TODO: card 1 works, testing card clickability for other cards
+// function to pass house info to singlehouse page when house card is clicked
 function passValues(cardNumber) {
-    console.log("house card clicked");
     localStorage.setItem("house-address", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardAddress")[0].innerHTML);
     localStorage.setItem("house-price", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardPrice")[0].innerHTML);
+    localStorage.setItem("house-picture", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardImage")[0].getAttribute("src"));
 }
-
 // ----------------Beginning of Google Maps Section--------------- //
 
 

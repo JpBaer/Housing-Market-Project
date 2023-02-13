@@ -21,3 +21,4 @@ function initMap(){
 // using local storage to pass house data to single house page
 document.getElementById("show-address").innerHTML = "House Address: " + localStorage.getItem("house-address");
 document.getElementById("show-price").innerHTML = "House Price: " + localStorage.getItem("house-price");
+document.getElementById("house-photo").setAttribute("src", localStorage.getItem("house-picture"));
