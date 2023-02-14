@@ -15,6 +15,8 @@
 var searchButton = document.getElementById('searchButton');
 var cityInput = document.getElementById('city-input');
 var stateInput = document.getElementById('state-select');
+var modalbtn = document.querySelector('.modal-close');
+var modal = document.querySelector('.modal');
 
 function fetchRealty(stateCode, cityName){
         const options = {
@@ -32,7 +34,11 @@ function fetchRealty(stateCode, cityName){
             })
             .then(function (data) {
                 console.log(data)
-
+                if(data.listings.length === 0){
+                    modal.classList.add("is-active");
+                    return;
+                }
+                
                 var houseCoords = [];
                 var housePrices = [];
                 for( var i = 0; i < 6; i++){
@@ -45,7 +51,7 @@ function fetchRealty(stateCode, cityName){
 
 
              
-
+                    console.log('These are the listings')
                     console.log(data.listings[i])
 
                     // console.log(data.listings[i].address)
@@ -76,14 +82,23 @@ function fetchRealty(stateCode, cityName){
                 for (var n = 0; n < data.listings.length; n++) {
                     averagePrice += data.listings[n].price_raw;
                 }  
+                
 
                 averagePrice = averagePrice / data.listings.length;
                 console.log(averagePrice);
 
-                
+                document.getElementById('average-price').textContent = Math.trunc(Math.round(averagePrice)).toLocaleString('en-US',{
+                    style: 'currency',
+                    currency: 'USD'
+                });
+                document.getElementById('city-name').textContent = cityName;
+            
+                // add click event to take user to single house page
             })
             
-            .catch(err => console.error(err));
+            .catch(err => {console.error(err)
+                console.log('error')
+            });
     }
 
 searchButton.addEventListener('click',function(){
@@ -93,30 +108,20 @@ searchButton.addEventListener('click',function(){
     console.log(stateCode)
     //Replaces spaces with %20 for fetch url
     var cityName = cityInput.value.split(' ').join('%20');
-    console.log(cityName);
-
-    fetchRealty(stateCode, cityName)
+        fetchRealty(stateCode, cityName);
 });
 
+modalbtn.addEventListener('click', function(){
+    modal.classList.remove("is-active");
+})
 
-
-
-// function to pass house info to singlehouse page when house card is clicked
+// TODO: card 1 works, testing card clickability for other cards
 function passValues(cardNumber) {
+    console.log("house card clicked");
     localStorage.setItem("house-address", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardAddress")[0].innerHTML);
     localStorage.setItem("house-price", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardPrice")[0].innerHTML);
-    localStorage.setItem("house-picture", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardImage")[0].getAttribute("src"));
-    var houseCoords = JSON.parse(localStorage.getItem('houseCoords'))
-    localStorage.setItem("latitude", houseCoords[cardNumber-1][0]);
-    localStorage.setItem("longitude", houseCoords[cardNumber-1][1]);
-    localStorage.setItem("house-beds", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-beds"));
-    localStorage.setItem("house-baths", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-baths"));
-    localStorage.setItem("house-list-date", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-listdate"));
-    localStorage.setItem("house-sqft", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-sqft"));
-    localStorage.setItem("house-prop-type", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-proptype"));
-    localStorage.setItem("house-office-name", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-officename"));
-    localStorage.setItem("house-url", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-url"));
 }
+
 // ----------------Beginning of Google Maps Section--------------- //
 
 
@@ -169,9 +174,15 @@ function success(position){
       })
       .then(function(data){
         console.log(data);
-        var userState = data.results[8].address_components[2].short_name;
-        var userCity = data.results[8].address_components[0].long_name;
+        var address = String(data.results[0].formatted_address);
+        var addressArr = address.split(',')
+        
+        console.log(addressArr)
 
+        var userState = addressArr[2].trim().split(' ')[0];
+        var userCity = addressArr[1].trim();
+        console.log(userState)
+        console.log(userCity)
         //Populate with houses in users location upon page load
 
         fetchRealty(userState, userCity);
