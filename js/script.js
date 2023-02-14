@@ -16,8 +16,8 @@
 var searchButton = document.getElementById('searchButton');
 var cityInput = document.getElementById('city-input');
 var stateInput = document.getElementById('state-select');
-var modalbg = document.getElementsByClassName("modal-background");
-var modal = document.getElementsByClassName("modal");
+var modalbtn = document.querySelector('.modal-close');
+var modal = document.querySelector('.modal');
 
 function fetchRealty(stateCode, cityName){
         const options = {
@@ -35,7 +35,11 @@ function fetchRealty(stateCode, cityName){
             })
             .then(function (data) {
                 console.log(data)
-
+                if(data.listings.length === 0){
+                    modal.classList.add("is-active");
+                    return;
+                }
+                
                 var houseCoords = [];
                 var housePrices = [];
                 for( var i = 0; i < 6; i++){
@@ -50,6 +54,7 @@ function fetchRealty(stateCode, cityName){
                 //Create function to take lat lon and place marker on map
 
                     console.log(data.listings[i])
+
                     // console.log(data.listings[i].address)
                     // console.log(data.listings[i].lat)
                     // console.log(data.listings[i].lon)
@@ -72,11 +77,11 @@ function fetchRealty(stateCode, cityName){
                 console.log(averagePrice);
 
                 // add click event to take user to single house page
-
             })
             
             .catch(err => {console.error(err)
-                modal.classlist.add('is-active');
+                // modal.className('is-active');
+                // console.log(modal)
             });
     }
 
@@ -90,6 +95,11 @@ searchButton.addEventListener('click',function(){
         fetchRealty(stateCode, cityName);
 });
 
+modalbtn.addEventListener('click', function(){
+    modal.classList.remove("is-active");
+})
+
+
         
 // ----------------Beginning of Google Maps Section--------------- //
 
@@ -101,17 +111,21 @@ searchButton.addEventListener('click',function(){
     //Bonus points if you can display icons for each house
 // #3 On Single House page show location of selected house and street view if applicable
 
-//Create a function for when a house is clicked that pulls lat and lon from zillow and displays map
+//Create a function for when a house is clicked that pulls lat and lon from Realty-In-US and displays map
 
 var GoogleAPIKey = "AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U"
 
 //Grabs users location
 var userPosition = navigator.geolocation;
 
+
+
 //determines users location
 userPosition.getCurrentPosition(success,failure);
 //If successful runs success function to show a map with current location
 function success(position){
+
+    console.log(position)
 
     var userLat = position.coords.latitude;
     var userLng = position.coords.longitude;
@@ -121,12 +135,31 @@ function success(position){
         center: coords
     }
 
+    //Creates map on users location
     var map = new google.maps.Map(document.getElementById('map'),options);
 
+    //Creates marker on users location
     var marker = new google.maps.Marker({
         position: coords,
         map: map,
       });
+
+    // Reverse Geolocate (convert lat and lng into readable address)
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({location: {lat: userLat, lng: userLng}})
+
+      .then(function(response){
+        return response;
+      })
+      .then(function(data){
+        console.log(data);
+        var userState = data.results[8].address_components[2].short_name;
+        var userCity = data.results[8].address_components[0].long_name;
+
+        //Populate with houses in users location upon page load
+
+        fetchRealty(userState, userCity);
+      })
 }
 //If failed to get current location runs following function to show default map of seattle
 function failure(){
@@ -139,51 +172,68 @@ function failure(){
         center: coords
     }
 
-    var map = new google.maps.Map(document.getElementById('map'),options);
+//Creates map of seattle
 
+    var map = new google.maps.Map(document.getElementById('map'),options);
+//creates marker on seattle
     var marker = new google.maps.Marker({
         position: coords,
         map: map
       })
+    var defaultState = 'WA';
+    var defaultCity = 'Seattle';
+//Calls realty function with seattle as default
+    fetchRealty(defaultState, defaultCity);
 }
 
 
+//Function to set markers for populated houses
 function setMarkers(houseCoords, housePrices){
     console.log(houseCoords)
     map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
+
+    // Sets center of map to location of first house
     center: {lat: houseCoords[0][0], lng: houseCoords[0][1]}
   });
+
+    // loops through houses and places markers and infowindows
 
     for(let i = 0; i < houseCoords.length; i++){
         var markerCoords = houseCoords[i];
         var housePrice = housePrices[i];
-        var infowindow = new google.maps.InfoWindow({
-            map:map
-        });
+        //console.log("House Price:" + housePrice);
+      
 
         var marker =  new google.maps.Marker({
         position: { lat: markerCoords[0], lng: markerCoords[1] },
         map: map
         });
+
+        var infowindow = new google.maps.InfoWindow({
+            content: housePrice,
+    
+        });
+
+        // This asigns content to each individual marker to prevent only one infowindow from being populated
+        marker.infowindow = infowindow;
        
         marker.addListener("mouseover", function(){
-            infowindow.setContent(housePrice);
-            infowindow.open({
-                anchor:marker,
-                map,
-            })
+           
+            return this.infowindow.open(map, this);
+
         })
-       
+
+        marker.addListener("mouseout", function(){
+            return this.infowindow.close(map, this);
+        })
         }
-        
+ 
     }
 ;
 
 
-// Example HTTPS Call https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=API_Key
-// JSON signifies to return response in JSON
-// Address components seperated by +
+
 
 
 

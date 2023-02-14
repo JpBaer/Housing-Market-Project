@@ -90,10 +90,9 @@
       <div class="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
-          <p class="image is-4by3">
-            <img src="" alt="">
-          </p>
-          <p class="modal-text">Please enter in a valid state code and city name combination</p>
+          <div class="notification">
+            Please enter in a valid state code and city name combination
+          </div>
         </div>
         <button class="modal-close is-large" aria-label="close"></button>
       </div>  
@@ -105,10 +104,11 @@
   <section class="section" id="house-listings-section">
     <div class="container">
         <div class="columns">
-            <div class="column is-3" id="house-cards">
+            <div class="column is-one-third" id="house-cards">
+              <!-- testing tag -->
+              <a value="click" onclick="passValues(1);" href="./singlehouse.html" id="card-1-link">
                 <div id="card-1" class="card shadow-lg is-cursor-pointer">
                     <div class="card-image cover-image is-overflow">
-                      <!-- figure out sizing -->
                         <figure class="image">
                             <img class="cardImage" src="" alt="Placeholder image">
                         </figure>
@@ -120,8 +120,11 @@
                         </div>
                     </div>
                 </div>
+              </a>
+            </div>
               
-                
+            <div class="column is-one-third" id="house-cards">
+              <a value="click" onclick="passValues(2);" href="./singlehouse.html" id="card-2-link">
                 <div id="card-2" class="card shadow-lg is-cursor-pointer">
                   <div class="card-image cover-image is-overflow">
                       <figure class="image">
@@ -134,10 +137,13 @@
                           <h3 class="cardPrice mb-1"></h3>
                       </div>
                   </div>
-                 </div>
+                </div>
+              </a>
+            </div>
                 
-
-                 <div id="card-3" class="card shadow-lg is-cursor-pointer">
+            <div class="column is-one-third" id="house-cards">
+              <a value="click" onclick="passValues(3);" href="./singlehouse.html" id="card-3-link">
+                <div id="card-3" class="card shadow-lg is-cursor-pointer">
                   <div class="card-image cover-image is-overflow">
                       <figure class="image">
                           <img class="cardImage" src="" alt="Placeholder image">
@@ -148,9 +154,15 @@
                           <p class="cardAddress is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
                           <h3 class="cardPrice mb-1"></h3>
                       </div>
-                    </div>
                   </div>
+                </div>
+              </a>
+            </div>
+        </div>
                   
+        <div class="columns">
+            <div class="column is-one-third" id="house-cards">
+              <a value="click" onclick="passValues(4);" href="./singlehouse.html" id="card-4-link">
                   <div id="card-4" class="card shadow-lg is-cursor-pointer">
                     <div class="card-image cover-image is-overflow">
                         <figure class="image">
@@ -164,7 +176,11 @@
                         </div>
                     </div>
                   </div>
+              </a>
+            </div>
 
+            <div class="column is-one-third" id="house-cards">
+              <a value="click" onclick="passValues(5);" href="./singlehouse.html" id="card-5-link">
                   <div id="card-5" class="card shadow-lg is-cursor-pointer">
                     <div class="card-image cover-image is-overflow">
                         <figure class="image">
@@ -178,7 +194,11 @@
                         </div>
                     </div>
                   </div>
+              </a>
+            </div>
 
+            <div class="column is-one-third" id="house-cards">
+              <a value="click" onclick="passValues(6);" href="./singlehouse.html" id="card-6-link">
                   <div id="card-6" class="card shadow-lg is-cursor-pointer">
                     <div class="card-image cover-image is-overflow">
                         <figure class="image">
@@ -192,6 +212,7 @@
                         </div>
                     </div>
                   </div>
+              </a>
             </div>
         </div>
     </div>
