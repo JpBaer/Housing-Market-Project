@@ -51,7 +51,7 @@ function fetchRealty(stateCode, cityName){
 
 
              
-
+                    console.log('These are the listings')
                     console.log(data.listings[i])
 
                     // console.log(data.listings[i].address)
@@ -79,14 +79,22 @@ function fetchRealty(stateCode, cityName){
                 for (var n = 0; n < data.listings.length; n++) {
                     averagePrice += data.listings[n].price_raw;
                 }  
+                
 
                 averagePrice = averagePrice / data.listings.length;
                 console.log(averagePrice);
 
-                
+                document.getElementById('average-price').textContent = Math.trunc(Math.round(averagePrice)).toLocaleString('en-US',{
+                    style: 'currency',
+                    currency: 'USD'
+                });
+                document.getElementById('city-name').textContent = cityName;
+            
+                // add click event to take user to single house page
             })
             
             .catch(err => {console.error(err)
+                console.log('error')
             });
     }
 
@@ -163,9 +171,15 @@ function success(position){
       })
       .then(function(data){
         console.log(data);
-        var userState = data.results[8].address_components[2].short_name;
-        var userCity = data.results[8].address_components[0].long_name;
+        var address = String(data.results[0].formatted_address);
+        var addressArr = address.split(',')
+        
+        console.log(addressArr)
 
+        var userState = addressArr[2].trim().split(' ')[0];
+        var userCity = addressArr[1].trim();
+        console.log(userState)
+        console.log(userCity)
         //Populate with houses in users location upon page load
 
         fetchRealty(userState, userCity);
