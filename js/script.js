@@ -88,8 +88,13 @@ searchButton.addEventListener('click',function(){
     fetchRealty(stateCode, cityName)
 });
 
+// TODO: card 1 works, testing card clickability for other cards
+function passValues(cardNumber) {
+    console.log("house card clicked");
+    localStorage.setItem("house-address", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardAddress")[0].innerHTML);
+    localStorage.setItem("house-price", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardPrice")[0].innerHTML);
+}
 
-        
 // ----------------Beginning of Google Maps Section--------------- //
 
 
