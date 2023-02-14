@@ -56,7 +56,8 @@ function fetchRealty(stateCode, cityName){
                     document.getElementsByClassName("cardImage")[i].setAttribute("src", data.listings[i].photo);
                     document.getElementsByClassName("cardAddress")[i].innerHTML = data.listings[i].address;
                     document.getElementsByClassName("cardPrice")[i].innerHTML = data.listings[i].price;
-                    document.getElementsByClassName("card")[i].setAttribute("data-listdate", data.listings[i].list_date);
+                    document.getElementsByClassName("card")[i].setAttribute("data-listdate", data.listings[i].list_date.substring(0, 10));
+                    // console.log(data.listings[i].list_date.substring(0, 10));
                     document.getElementsByClassName("card")[i].setAttribute("data-proptype", data.listings[i].prop_type);
                     document.getElementsByClassName("card")[i].setAttribute("data-beds", data.listings[i].beds);
                     document.getElementsByClassName("card")[i].setAttribute("data-baths", data.listings[i].baths);

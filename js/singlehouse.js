@@ -26,11 +26,11 @@ function initMap(){
 document.getElementById("show-address").innerHTML = "House Address: " + localStorage.getItem("house-address");
 document.getElementById("show-price").innerHTML = "House Price: " + localStorage.getItem("house-price");
 document.getElementById("house-photo").setAttribute("src", localStorage.getItem("house-picture"));
+document.getElementById("show-list-date").innerHTML = "Listing Date: " + dayjs(localStorage.getItem("house-list-date"), 'YYYY-MM-DD').format('MMM D, YYYY');
+document.getElementById("show-prop-type").innerHTML = "Property Type: " + localStorage.getItem("house-prop-type");
 document.getElementById("show-beds").innerHTML = "# of Bedrooms: " + localStorage.getItem("house-beds");
 document.getElementById("show-baths").innerHTML = "# of Bathrooms: " + localStorage.getItem("house-baths");
-document.getElementById("show-list-date").innerHTML = "Listing Date: " + localStorage.getItem("house-list-date");
 document.getElementById("show-sqft").innerHTML = "Square Footage: " + localStorage.getItem("house-sqft");
-document.getElementById("show-prop-type").innerHTML = "Property Type: " + localStorage.getItem("house-prop-type");
 document.getElementById("show-office-name").innerHTML = "Office Name: " + localStorage.getItem("house-office-name");
 document.getElementById("show-url").innerHTML = "URL: " + localStorage.getItem("house-url");
 
