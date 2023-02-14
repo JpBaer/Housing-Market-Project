@@ -115,11 +115,21 @@ modalbtn.addEventListener('click', function(){
     modal.classList.remove("is-active");
 })
 
-// TODO: card 1 works, testing card clickability for other cards
+// passes house listing data to singlehouse page when house is clicked
 function passValues(cardNumber) {
-    console.log("house card clicked");
     localStorage.setItem("house-address", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardAddress")[0].innerHTML);
     localStorage.setItem("house-price", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardPrice")[0].innerHTML);
+    localStorage.setItem("house-picture", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardImage")[0].getAttribute("src"));
+    var houseCoords = JSON.parse(localStorage.getItem('houseCoords'))
+    localStorage.setItem("latitude", houseCoords[cardNumber-1][0]);
+    localStorage.setItem("longitude", houseCoords[cardNumber-1][1]);
+    localStorage.setItem("house-beds", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-beds"));
+    localStorage.setItem("house-baths", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-baths"));
+    localStorage.setItem("house-list-date", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-listdate"));
+    localStorage.setItem("house-sqft", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-sqft"));
+    localStorage.setItem("house-prop-type", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-proptype"));
+    localStorage.setItem("house-office-name", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-officename"));
+    localStorage.setItem("house-url", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-url"));
 }
 
 // ----------------Beginning of Google Maps Section--------------- //
