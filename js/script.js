@@ -88,19 +88,7 @@ searchButton.addEventListener('click',function(){
     //Replaces spaces with %20 for fetch url
     var cityName = cityInput.value.split(' ').join('%20');
         fetchRealty(stateCode, cityName);
-        // validateCity(stateCode, cityName);
 });
-
-// function validateCity(stateCode, cityName){
-//     var response = await fetch("https://realty-in-us.p.rapidapi.com/properties/list-for-sale?state_code=" + stateCode + "&city=" + cityName + "&offset=0&limit=200&sort=relevance", options);
-//     var data = await response.json()
-//     if (data.cod == "200") {
-//         fetchRealty(stateCode, cityName);
-//     } else {
-//         modal.classlist.add('is-active');
-//     }
-// }
-
 
         
 // ----------------Beginning of Google Maps Section--------------- //
