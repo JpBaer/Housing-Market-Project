@@ -2,8 +2,12 @@
 //If failed to get current location runs following function to show default map of seattle
 function initMap(){
     //var latlon = 
-    var lat = 47.6062
-    var lng = -122.3321
+    var houseCoords = [localStorage.getItem('latitude'), localStorage.getItem('longitude')];
+    console.log(houseCoords);
+    var lat = Number(houseCoords[0]);
+    console.log(lat);
+    var lng = Number(houseCoords[1]);
+    console.log(lng);
     var coords = {lat:lat,lng:lng}
     var options = {
         zoom: 10,
@@ -21,3 +25,8 @@ function initMap(){
 // using local storage to pass house data to single house page
 document.getElementById("show-address").innerHTML = "House Address: " + localStorage.getItem("house-address");
 document.getElementById("show-price").innerHTML = "House Price: " + localStorage.getItem("house-price");
+
+
+
+// var houseCoords = JSON.parse(localStorage.getItem('houseCoords'))
+// console.log(houseCoords[0][0]);
