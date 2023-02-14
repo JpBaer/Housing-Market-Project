@@ -56,14 +56,16 @@ function fetchRealty(stateCode, cityName){
                     document.getElementsByClassName("cardImage")[i].setAttribute("src", data.listings[i].photo);
                     document.getElementsByClassName("cardAddress")[i].innerHTML = data.listings[i].address;
                     document.getElementsByClassName("cardPrice")[i].innerHTML = data.listings[i].price;
-                    document.getElementsByClassName("card")[i].setAttribute("data-listdate", data.listings[i].list_date.substring(0, 10));
-                    // console.log(data.listings[i].list_date.substring(0, 10));
-                    document.getElementsByClassName("card")[i].setAttribute("data-proptype", data.listings[i].prop_type);
-                    document.getElementsByClassName("card")[i].setAttribute("data-beds", data.listings[i].beds);
-                    document.getElementsByClassName("card")[i].setAttribute("data-baths", data.listings[i].baths);
-                    document.getElementsByClassName("card")[i].setAttribute("data-sqft", data.listings[i].sqft);
-                    document.getElementsByClassName("card")[i].setAttribute("data-officename", data.listings[i].office_name);
-                    document.getElementsByClassName("card")[i].setAttribute("data-url", data.listings[i].rdc_web_url);
+
+                    // storing other house data within data attributes in each card class
+                    var card = document.getElementsByClassName("card")[i];
+                    card.setAttribute("data-listdate", data.listings[i].list_date.substring(0, 10));
+                    card.setAttribute("data-proptype", data.listings[i].prop_type);
+                    card.setAttribute("data-beds", data.listings[i].beds);
+                    card.setAttribute("data-baths", data.listings[i].baths);
+                    card.setAttribute("data-sqft", data.listings[i].sqft);
+                    card.setAttribute("data-officename", data.listings[i].office_name);
+                    card.setAttribute("data-url", data.listings[i].rdc_web_url);
                 }
                     //Takes coordinates and prices and places on map
                     //Add Address
