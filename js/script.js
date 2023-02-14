@@ -80,8 +80,6 @@ function fetchRealty(stateCode, cityName){
             })
             
             .catch(err => {console.error(err)
-                // modal.className('is-active');
-                // console.log(modal)
             });
     }
 
