@@ -56,6 +56,13 @@ function fetchRealty(stateCode, cityName){
                     document.getElementsByClassName("cardImage")[i].setAttribute("src", data.listings[i].photo);
                     document.getElementsByClassName("cardAddress")[i].innerHTML = data.listings[i].address;
                     document.getElementsByClassName("cardPrice")[i].innerHTML = data.listings[i].price;
+                    document.getElementsByClassName("card")[i].setAttribute("data-listdate", data.listings[i].list_date);
+                    document.getElementsByClassName("card")[i].setAttribute("data-proptype", data.listings[i].prop_type);
+                    document.getElementsByClassName("card")[i].setAttribute("data-beds", data.listings[i].beds);
+                    document.getElementsByClassName("card")[i].setAttribute("data-baths", data.listings[i].baths);
+                    document.getElementsByClassName("card")[i].setAttribute("data-sqft", data.listings[i].sqft);
+                    document.getElementsByClassName("card")[i].setAttribute("data-officename", data.listings[i].office_name);
+                    document.getElementsByClassName("card")[i].setAttribute("data-url", data.listings[i].rdc_web_url);
                 }
                     //Takes coordinates and prices and places on map
                     //Add Address
@@ -99,6 +106,13 @@ function passValues(cardNumber) {
     var houseCoords = JSON.parse(localStorage.getItem('houseCoords'))
     localStorage.setItem("latitude", houseCoords[cardNumber-1][0]);
     localStorage.setItem("longitude", houseCoords[cardNumber-1][1]);
+    localStorage.setItem("house-beds", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-beds"));
+    localStorage.setItem("house-baths", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-baths"));
+    localStorage.setItem("house-list-date", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-listdate"));
+    localStorage.setItem("house-sqft", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-sqft"));
+    localStorage.setItem("house-prop-type", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-proptype"));
+    localStorage.setItem("house-office-name", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-officename"));
+    localStorage.setItem("house-url", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-url"));
 }
 // ----------------Beginning of Google Maps Section--------------- //
 
