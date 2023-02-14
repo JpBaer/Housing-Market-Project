@@ -11,19 +11,27 @@
 </head>
 
 <body>
-    <!-- TODO: PLEASE REMOVE: just testing local storage -->
-    <p id="show-address"></p>
-    <p id="show-price"></p>
+    <div id="house-info">
+        <p id="show-address"></p>
+        <p id="show-price"></p>
+        <p id="show-list-date"></p>
+        <p id="show-prop-type"></p>
+        <p id="show-beds"></p>
+        <p id="show-baths"></p>
+        <p id="show-sqft"></p>
+        <p id="show-office-name"></p>
+        <p id="show-url"></p>
+    </div>
 
     <header>
 
     </header>
 
     <main class="flex-container">
-        <div class="map-display" id="map"></div>
+        <!-- <div class="map-display" id="map"></div> -->
         <div class="info">
             <div class="image-of-house">
-                <img src="" alt="">
+                <img id="house-photo" src="" alt="Image of house">
             </div>
             <div class="search-results">
 
@@ -32,6 +40,7 @@
         </div>
 
     </main>
+    <div id="map"></div>
     <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U&callback=initMap&v=weekly"
     defer

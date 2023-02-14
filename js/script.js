@@ -12,7 +12,6 @@
         // link: click here for street view
         // retrieve address and zestimate from the Zestimate API
 
-//Example code for calling a fetch from realty-in-us
 var searchButton = document.getElementById('searchButton');
 var cityInput = document.getElementById('city-input');
 var stateInput = document.getElementById('state-select');
@@ -51,7 +50,7 @@ function fetchRealty(stateCode, cityName){
                 housePrices.push(data.listings[i].price);
 
 
-                //Create function to take lat lon and place marker on map
+             
 
                     console.log(data.listings[i])
 
@@ -63,10 +62,18 @@ function fetchRealty(stateCode, cityName){
                     document.getElementsByClassName("cardImage")[i].setAttribute("src", data.listings[i].photo);
                     document.getElementsByClassName("cardAddress")[i].innerHTML = data.listings[i].address;
                     document.getElementsByClassName("cardPrice")[i].innerHTML = data.listings[i].price;
+                    document.getElementsByClassName("card")[i].setAttribute("data-listdate", data.listings[i].list_date);
+                    document.getElementsByClassName("card")[i].setAttribute("data-proptype", data.listings[i].prop_type);
+                    document.getElementsByClassName("card")[i].setAttribute("data-beds", data.listings[i].beds);
+                    document.getElementsByClassName("card")[i].setAttribute("data-baths", data.listings[i].baths);
+                    document.getElementsByClassName("card")[i].setAttribute("data-sqft", data.listings[i].sqft);
+                    document.getElementsByClassName("card")[i].setAttribute("data-officename", data.listings[i].office_name);
+                    document.getElementsByClassName("card")[i].setAttribute("data-url", data.listings[i].rdc_web_url);
                 }
-
+                    //Takes coordinates and prices and places on map
+                    //Add Address
                     setMarkers(houseCoords, housePrices);
-
+                    localStorage.setItem('houseCoords',JSON.stringify(houseCoords));
                 // calculates the mean price for houses in the area
                 var averagePrice = 0;
                 for (var n = 0; n < data.listings.length; n++) {
@@ -76,7 +83,7 @@ function fetchRealty(stateCode, cityName){
                 averagePrice = averagePrice / data.listings.length;
                 console.log(averagePrice);
 
-                // add click event to take user to single house page
+                
             })
             
             .catch(err => {console.error(err)
@@ -97,8 +104,13 @@ modalbtn.addEventListener('click', function(){
     modal.classList.remove("is-active");
 })
 
+// TODO: card 1 works, testing card clickability for other cards
+function passValues(cardNumber) {
+    console.log("house card clicked");
+    localStorage.setItem("house-address", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardAddress")[0].innerHTML);
+    localStorage.setItem("house-price", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardPrice")[0].innerHTML);
+}
 
-        
 // ----------------Beginning of Google Maps Section--------------- //
 
 
@@ -221,7 +233,7 @@ function setMarkers(houseCoords, housePrices){
             return this.infowindow.open(map, this);
 
         })
-
+        // When mouse is moved away from marker infowindow dissapears
         marker.addListener("mouseout", function(){
             return this.infowindow.close(map, this);
         })
