@@ -15,6 +15,8 @@
 var searchButton = document.getElementById('searchButton');
 var cityInput = document.getElementById('city-input');
 var stateInput = document.getElementById('state-select');
+var modalbtn = document.querySelector('.modal-close');
+var modal = document.querySelector('.modal');
 
 function fetchRealty(stateCode, cityName){
         const options = {
@@ -32,7 +34,11 @@ function fetchRealty(stateCode, cityName){
             })
             .then(function (data) {
                 console.log(data)
-
+                if(data.listings.length === 0){
+                    modal.classList.add("is-active");
+                    return;
+                }
+                
                 var houseCoords = [];
                 var housePrices = [];
                 for( var i = 0; i < 6; i++){
@@ -80,7 +86,8 @@ function fetchRealty(stateCode, cityName){
                 
             })
             
-            .catch(err => console.error(err));
+            .catch(err => {console.error(err)
+            });
     }
 
 searchButton.addEventListener('click',function(){
@@ -90,30 +97,20 @@ searchButton.addEventListener('click',function(){
     console.log(stateCode)
     //Replaces spaces with %20 for fetch url
     var cityName = cityInput.value.split(' ').join('%20');
-    console.log(cityName);
-
-    fetchRealty(stateCode, cityName)
+        fetchRealty(stateCode, cityName);
 });
 
+modalbtn.addEventListener('click', function(){
+    modal.classList.remove("is-active");
+})
 
-
-
-// function to pass house info to singlehouse page when house card is clicked
+// TODO: card 1 works, testing card clickability for other cards
 function passValues(cardNumber) {
+    console.log("house card clicked");
     localStorage.setItem("house-address", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardAddress")[0].innerHTML);
     localStorage.setItem("house-price", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardPrice")[0].innerHTML);
-    localStorage.setItem("house-picture", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("cardImage")[0].getAttribute("src"));
-    var houseCoords = JSON.parse(localStorage.getItem('houseCoords'))
-    localStorage.setItem("latitude", houseCoords[cardNumber-1][0]);
-    localStorage.setItem("longitude", houseCoords[cardNumber-1][1]);
-    localStorage.setItem("house-beds", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-beds"));
-    localStorage.setItem("house-baths", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-baths"));
-    localStorage.setItem("house-list-date", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-listdate"));
-    localStorage.setItem("house-sqft", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-sqft"));
-    localStorage.setItem("house-prop-type", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-proptype"));
-    localStorage.setItem("house-office-name", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-officename"));
-    localStorage.setItem("house-url", document.getElementById("card-" + cardNumber + "-link").getElementsByClassName("card")[0].getAttribute("data-url"));
 }
+
 // ----------------Beginning of Google Maps Section--------------- //
 
 
