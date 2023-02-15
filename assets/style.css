@@ -1,9 +1,12 @@
 #map{
-    height: 400px;
-    width:95%
+    height:300px;
+    width:100%
 }
 
-
+#map2{
+    height:400px;
+    width:95%;
+}
 .cover-image {
     max-height: 300px;
     max-width: 300px;
@@ -21,13 +24,13 @@ body {
     background-color: #FBFBF2;
 }
 
-#search-section {
+/* #search-section {
     width: 50%;
 }
 
 #house-listings-section {
     width: 50%;
-}
+} */
 
 .title{
     color: #FBFBF2;
@@ -36,14 +39,20 @@ body {
     
 }
 
-.cardImage{
- width:500px;
- height:300px;
+.houseCard{
+max-height:330px
 }
+
+.cardImage{
+ min-width:100%;
+ min-height:175px;
+ max-height:175px;
+}
+
 
 .subtitle{
     color: #FBFBF2;
-    font-size: 23px;
+    font-size: 18px;
     font-style: italic;
 }
 
