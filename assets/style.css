@@ -2,6 +2,14 @@
     height:300px;
     width:100%
 }
+#singlehouse-map {
+    height: 100vh;
+    width: 60%;
+}
+.card-content-singlehouse {
+    height: 100vh;
+    width: 100%;
+}
 
 #map2{
     height:400px;

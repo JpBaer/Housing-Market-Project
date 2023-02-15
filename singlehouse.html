@@ -9,51 +9,102 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/style.css">
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <div class="map-display" id="singlehouse-map"></div>
+
+    <div class="search-results">
+
+
+    </div>
+    </div>
     <a id="back-button" href="./index.html">Back</a>
 
-    <div id="house-info">
-        <p id="show-address"></p>
-        <p id="show-price"></p>
-        <p id="show-list-date"></p>
-        <p id="show-prop-type"></p>
-        <p id="show-beds"></p>
-        <p id="show-baths"></p>
-        <p id="show-sqft"></p>
-        <p id="show-office-name"></p>
-        <p id="show-url"></p>
-    </div>
+
 
     <header>
 
     </header>
 
     <main class="flex-container">
-        <!-- <div class="map-display" id="map"></div> -->
-        <div class="info">
-            <div class="image-of-house">
-                <img id="house-photo" src="" alt="Image of house">
-            </div>
-            <div class="search-results">
 
-
-            </div>
-        </div>
 
     </main>
-    <div id="map2"></div>
+
+
+
+
+
+    <section class="section" id="house-listings-section">
+        <div class="container">
+
+            <div class="column" id="house-cards">
+                <!-- testing tag -->
+
+                <div id="card-1" class="card shadow-lg is-cursor-pointer">
+                    <div class="card-image cover-image">
+                        <figure class="image">
+
+                            <div class="info">
+                                <div class="image-of-house">
+                                    <img id="house-photo" src="" alt="Image of house">
+                                </div>
+
+                        </figure>
+
+                    </div>
+                    <div class="card-content card-content-singlhouse">
+                        <div class="content">
+                        </div>
+                        <p id="show-address" style="text-align:left"></p>
+                        <p id="show-price" style="text-align:left"></p>
+
+                        <header>
+
+                        </header>
+
+                        <main class="flex-container" style="position: right;">
+                            <!-- <div class="map-display" id="map"></div> -->
+                            <div class="info">
+                                <div class="image-of-house">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="search-results">
+
+                                    <div id="house-info">
+                                        <p id="show-address"></p>
+                                        <p id="show-price"></p>
+                                        <p id="show-list-date"></p>
+                                        <p id="show-prop-type"></p>
+                                        <p id="show-beds"></p>
+                                        <p id="show-baths"></p>
+                                        <p id="show-sqft"></p>
+                                        <p id="show-office-name"></p>
+                                        <p id="show-url"></p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <p class="cardAddress is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold">
+                            </p>
+                            <h3 class="cardPrice mb-1"></h3>
+                    </div>
+    </section>
+
+
+
+
     <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U&callback=initMap&v=weekly"
-    defer
-    ></script>
-    <script src = "./js/singlehouse.js"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U&callback=initMap&v=weekly"
+        defer></script>
+    <script src="./js/singlehouse.js"></script>
 </body>
 
 </html>
