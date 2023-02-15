@@ -22,7 +22,7 @@ function fetchRealty(stateCode, cityName){
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': "eba8306e12msh1c414b154242eb7p11f720jsnd5aaf05cb4b3",
+                'X-RapidAPI-Key': "3efdae280amsh7219eb7ea335ad4p117908jsn8537e5ad31b3",
                 "X-RapidAPI-Host": "realty-in-us.p.rapidapi.com"
             }
         };
@@ -91,7 +91,8 @@ function fetchRealty(stateCode, cityName){
                     style: 'currency',
                     currency: 'USD'
                 });
-                document.getElementById('city-name').textContent = cityName;
+
+                document.getElementById('city-name').textContent = cityName.split("%20").join(" ");
             
                 // add click event to take user to single house page
             })
