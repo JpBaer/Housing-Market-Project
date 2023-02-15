@@ -14,7 +14,9 @@ function initMap(){
         center: coords
     }
 
+
     var map = new google.maps.Map(document.getElementById('singlehouse-map'),options);
+
 
     var marker = new google.maps.Marker({
         position: coords,
