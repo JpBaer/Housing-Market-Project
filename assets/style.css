@@ -22,6 +22,27 @@
     border-top-right-radius: 3px;
 }
 
+.cover-image img {
+    transition: transform 1s, filter 2s ease-in-out;
+    -webkit-transition: transform 1s, filter 2s ease-in-out;
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+}
+
+.card:hover .cover-image img {
+    cursor: pointer;
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+}
+
+.is-overflow-hidden {
+    overflow: hidden !important;
+}
+
+.is-cursor-pointer {
+    cursor: pointer !important;
+}
+
 body {
     display: flex;
     background-color: #7A8B99;
@@ -31,14 +52,6 @@ body {
 .card {
     background-color: #FBFBF2;
 }
-
-/* #search-section {
-    width: 50%;
-}
-
-#house-listings-section {
-    width: 50%;
-} */
 
 .title{
     color: #FBFBF2;
@@ -55,7 +68,7 @@ max-height:330px
  min-width:100%;
  min-height:175px;
  max-height:175px;
-}
+} 
 
 
 .subtitle{
@@ -66,4 +79,29 @@ max-height:330px
 
 h4{
     color: #FBFBF2;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+       flex-direction: column;
+       justify-content: center;
+   }
+
+   .card-image {
+       align-content: center;
+       margin: 0 auto;
+       width: 100%;
+   }
+   .is-overflow-hidden {
+       overflow: visible !important;
+   }
+   
+  .houseCard {
+   padding-top: 25px;
+  }
+  .column {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+  }
 }
