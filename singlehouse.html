@@ -11,33 +11,68 @@
 </head>
 
 <body>
-    <!-- TODO: PLEASE REMOVE: just testing local storage -->
-    <p id="show-address"></p>
-    <p id="show-price"></p>
-
-    <header>
-
-    </header>
-
-    <main class="flex-container">
-        <!-- <div class="map-display" id="map"></div> -->
-        <div class="info">
-            <div class="image-of-house">
-                <img src="" alt="">
-            </div>
-            <div class="search-results">
-
-
-            </div>
+    <div  id="map" class="singlehouse-map"></div>
+    <div class="columns">
+        <div class="column is-half">
+            <div style="align-items: left;"></div>
         </div>
 
-    </main>
-    <div id="map"></div>
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U&callback=initMap&v=weekly"
-    defer
-    ></script>
-    <script src = "./js/singlehouse.js"></script>
+        </main>
+
+
+
+
+        <section class="section" id="house-listings-section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-one-third" id="house-cards">
+                        <!-- testing tag -->
+
+                        <div id="card-1" class="card shadow-lg is-cursor-pointer">
+                            <div class="card-image cover-image">
+                                <figure class="image">
+                                    <img class="cardImage" src="" alt="Placeholder image">
+                                </figure>
+
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                </div>
+                                <p id="show-address" style="text-align:right"></p>
+                                <p id="show-price" style="text-align:right"></p>
+
+                                <header>
+
+                                </header>
+
+                                <main class="flex-container" style="position: right;">
+                                    <!-- <div class="map-display" id="map"></div> -->
+                                    <div class="info">
+                                        <div class="image-of-house">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="search-results">
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <p
+                                        class="cardAddress is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold">
+                                    </p>
+                                    <h3 class="cardPrice mb-1"></h3>
+                            </div>
+        </section>
+
+
+
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxd2Ls7wflVthdU9GtS3jhfKlUOaMxd0U&callback=initMap&v=weekly"
+            defer></script>
+        <script src="./js/singlehouse.js"></script>
 </body>
 
 </html>
