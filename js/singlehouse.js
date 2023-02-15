@@ -14,7 +14,7 @@ function initMap(){
         center: coords
     }
 
-    var map = new google.maps.Map(document.getElementById('map'),options);
+    var map = new google.maps.Map(document.getElementById('map2'),options);
 
     var marker = new google.maps.Marker({
         position: coords,
