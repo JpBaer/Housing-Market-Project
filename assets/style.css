@@ -36,7 +36,10 @@ body {
     
 }
 
-
+.cardImage{
+ width:500px;
+ height:300px;
+}
 
 .subtitle{
     color: #FBFBF2;
