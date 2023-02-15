@@ -13,6 +13,7 @@
       <h1 class="title">
         Block Party
       </h1>
+      <hr>
       <p class="subtitle">
         Search for the current housing trends in your area.
       </p>
@@ -87,8 +88,32 @@
             </a>
           </p>
       </div>
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="notification">
+            Please enter in a valid state code and city name combination
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>  
 
     <div id ="map"></div>
+
+    <div class="columns">
+      <div class="column" id="info-card">
+        <!-- testing tag -->
+          <div class="card shadow-lg is-cursor-pointer">
+              <div class="card-content">
+                  <div class="content">
+                      <p class="is-uppercase has-text-centered is-text-wide-1 is-size-7 has-text-weight-semibold">Average home price in <span id =city-name></span>:</p>
+                      <h3 class = "has-text-centered" id="average-price"></h3>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+
   </section>
 
 
@@ -107,12 +132,13 @@
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            <p class="cardAddress is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
-                            <h3 class="cardPrice mb-1"></h3>
+                            <p class="cardAddress has-text-centered is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
+                            <h3 class="cardPrice has-text-centered mb-1"></h3>
                         </div>
                     </div>
                 </div>
-          </div>
+              </a>
+            </div>
               
             <div class="column is-one-third" id="house-cards">
               <a value="click" onclick="passValues(2);" href="./singlehouse.html" id="card-2-link">
@@ -124,12 +150,13 @@
                   </div>
                   <div class="card-content">
                       <div class="content">
-                          <p class="cardAddress is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
-                          <h3 class="cardPrice mb-1"></h3>
+                          <p class="cardAddress has-text-centered is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
+                          <h3 class="cardPrice has-text-centered mb-1"></h3>
                       </div>
                   </div>
-                 </div>
-                 </div>
+                </div>
+              </a>
+            </div>
                 
             <div class="column is-one-third" id="house-cards">
               <a value="click" onclick="passValues(3);" href="./singlehouse.html" id="card-3-link">
@@ -141,31 +168,34 @@
                   </div>
                   <div class="card-content">
                       <div class="content">
-                          <p class="cardAddress is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
-                          <h3 class="cardPrice mb-1"></h3>
+                          <p class="cardAddress has-text-centered is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
+                          <h3 class="cardPrice has-text-centered mb-1"></h3>
                       </div>
-                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
+            </div>
+        </div>
                   
         <div class="columns">
             <div class="column is-one-third" id="house-cards">
               <a value="click" onclick="passValues(4);" href="./singlehouse.html" id="card-4-link">
                   <div id="card-4" class="card shadow-lg is-cursor-pointer houseCard">
                     <div class="card-image cover-image is-overflow-hidden">
+
                         <figure class="image">
                             <img class="cardImage" src="" alt="Placeholder image">
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            <p class="cardAddress is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
-                            <h3 class="cardPrice mb-1"></h3>
+                            <p class="cardAddress has-text-centered is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
+                            <h3 class="cardPrice has-text-centered mb-1"></h3>
                         </div>
                     </div>
                   </div>
-                </div>
+              </a>
+            </div>
 
             <div class="column is-one-third" id="house-cards">
               <a value="click" onclick="passValues(5);" href="./singlehouse.html" id="card-5-link">
@@ -177,28 +207,30 @@
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            <p class="cardAddress is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
-                            <h3 class="cardPrice mb-1"></h3>
+                            <p class="cardAddress has-text-centered is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
+                            <h3 class="cardPrice has-text-centered mb-1"></h3>
                         </div>
                     </div>
                   </div>
-                </div>
+              </a>
+            </div>
 
             <div class="column is-one-third" id="house-cards">
               <a value="click" onclick="passValues(6);" href="./singlehouse.html" id="card-6-link">
                   <div id="card-6" class="card shadow-lg is-cursor-pointer houseCard">
-                    <div class="card-image cover-image is-overflow-hidden">
+                   <div class="card-image cover-image is-overflow-hidden">
                         <figure class="image">
                             <img class="cardImage" src="" alt="Placeholder image">
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            <p class="cardAddress is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
-                            <h3 class="cardPrice mb-1"></h3>
+                            <p class="cardAddress has-text-centered is-uppercase is-text-wide-1 is-size-7 has-text-weight-semibold"></p>
+                            <h3 class="cardPrice has-text-centered mb-1"></h3>
                         </div>
                     </div>
-                </div>
+                  </div>
+              </a>
             </div>
         </div>
     </div>

@@ -1,9 +1,12 @@
 #map{
-    height: 400px;
-    width:50%
+    height:300px;
+    width:100%
 }
 
-
+#map2{
+    height:400px;
+    width:95%;
+}
 .cover-image {
     max-height: 300px;
     max-width: 300px;
@@ -34,12 +37,13 @@
 
 body {
     display: flex;
+    background-color: #7A8B99;
+   
 }
 
 .card {
     background-color: #FBFBF2;
 }
-
 
 .title{
     color: #FBFBF2;
