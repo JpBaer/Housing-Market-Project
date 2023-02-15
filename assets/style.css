@@ -1,6 +1,6 @@
 #map{
     height: 400px;
-    width:50%
+    width:95%
 }
 
 
@@ -13,6 +13,12 @@
 
 body {
     display: flex;
+    background-color: #7A8B99;
+   
+}
+
+.card {
+    background-color: #FBFBF2;
 }
 
 #search-section {
@@ -23,3 +29,24 @@ body {
     width: 50%;
 }
 
+.title{
+    color: #FBFBF2;
+    font-size: 40px;
+    text-shadow: 5 5 10;
+    
+}
+
+.cardImage{
+ width:500px;
+ height:300px;
+}
+
+.subtitle{
+    color: #FBFBF2;
+    font-size: 23px;
+    font-style: italic;
+}
+
+h4{
+    color: #FBFBF2;
+}
