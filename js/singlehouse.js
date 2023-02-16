@@ -35,7 +35,6 @@ document.getElementById("show-beds").innerHTML = "<strong># of Bedrooms:</strong
 document.getElementById("show-baths").innerHTML = "<strong># of Bathrooms:</strong> " + localStorage.getItem("house-baths");
 document.getElementById("show-sqft").innerHTML = "<strong>Square Footage:</strong> " + localStorage.getItem("house-sqft");
 document.getElementById("show-office-name").innerHTML = "<strong>Office Name:</strong> " + localStorage.getItem("house-office-name");
-document.getElementById("show-url").innerHTML = "<strong>URL:</strong> " + localStorage.getItem("house-url");
-
+document.getElementById("show-url").setAttribute("href",localStorage.getItem("house-url"));
 // var houseCoords = JSON.parse(localStorage.getItem('houseCoords'))
 // console.log(houseCoords[0][0]);
