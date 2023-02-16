@@ -1,3 +1,6 @@
+*{
+    font-family: 'Barlow', sans-serif;
+}
 #map{
     height:300px;
     width:100%
@@ -11,10 +14,6 @@
     width: 100%;
 }
 
-#map2{
-    height:400px;
-    width:95%;
-}
 .cover-image {
     max-height: 300px;
     max-width: 300px;
@@ -31,6 +30,9 @@
     text-align: center;
     color: #7A8B99;
     border-radius: 3px;
+    margin-left: 10px;
+    
+
 }
 
 .singlehouse-cover-image {
@@ -41,6 +43,9 @@
     margin: 0 auto;
 }
 
+/* #house-listing-section{
+    padding-top: 0px;
+} */
 
 .cover-image img {
     transition: transform 1s, filter 2s ease-in-out;
@@ -129,4 +134,8 @@ h4{
    margin-left: auto;
    margin-right: auto;
   }
+
+  #singlehouse-map {
+    width: 100%;
+}
 }
