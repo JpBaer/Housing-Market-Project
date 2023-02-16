@@ -101,6 +101,11 @@ h4{
     color: #FBFBF2;
 }
 
+#info-card,
+#house-photo{
+    padding-top: 20px;
+}
+
 @media screen and (max-width: 768px) {
     body {
        flex-direction: column;
