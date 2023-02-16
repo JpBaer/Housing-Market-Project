@@ -20,7 +20,27 @@
     max-width: 300px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
+  
 }
+
+#back-button{
+    background-color: #FBFBF2;
+    height: 30px;
+    width: 100px;
+    padding: 5px;
+    text-align: center;
+    color: #7A8B99;
+    border-radius: 3px;
+}
+
+.singlehouse-cover-image {
+    /* max-height: 300px; */
+    max-width: 75%;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    margin: 0 auto;
+}
+
 
 .cover-image img {
     transition: transform 1s, filter 2s ease-in-out;
