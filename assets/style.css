@@ -106,6 +106,14 @@ h4{
     color: #FBFBF2;
 }
 
+.singlehouse-container {
+    margin-top: -40px;
+}
+
+.back-button {
+    position: static;
+    margin-top: -40px;
+}
 #info-card,
 #house-photo{
     padding-top: 20px;
