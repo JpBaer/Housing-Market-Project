@@ -4,6 +4,8 @@ An app that allows users to look at houses for sale in a searched area and see g
 ## Description
 This application allows users to search by state code and city to view current housing trends in their area. Users will see current houses for sale including a map that shows the property location. After browsing through the options within the searched city the user can choose to view more details for one property. A list of detailed data is presented as well as a map showing the location. This application is designed to make house shopping easier by providing a wide variety of homes within a desired location.
 
+Link to application: https://jpbaer.github.io/Housing-Market-Project/
+
 ## Installation
 In order to access this web page a working device that has access to the internet and a proper web browser is necessary.
 
